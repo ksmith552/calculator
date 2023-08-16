@@ -35,3 +35,20 @@ function operate(a, operator, b) {
         return divide(a, b)
     } else { console.log("Error: Please enter a valid operator.")}
 }
+
+
+
+
+let numberButtons = document.getElementsByClassName('number-buttons')
+
+for (let i = 0; i < numberButtons.length; i++) { 
+    numberButtons[i].addEventListener('click', function() {
+        let displayValue = document.getElementById("display-container")
+        let elementText = numberButtons[i].innerText
+        displayValue.textContent = elementText + " "
+        return "dog"
+    })
+    
+}
+
+// theabove functions only takes a single inpout at a time. this needs to take an entire string
