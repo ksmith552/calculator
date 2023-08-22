@@ -39,16 +39,22 @@ function operate(a, operator, b) {
 
 
 
-let numberButtons = document.getElementsByClassName('number-buttons')
 
-for (let i = 0; i < numberButtons.length; i++) { 
-    numberButtons[i].addEventListener('click', function() {
-        let displayValue = document.getElementById("display-container")
-        let elementText = numberButtons[i].innerText
-        displayValue.textContent = elementText + " "
-        return "dog"
-    })
-    
-}
 
-// theabove functions only takes a single inpout at a time. this needs to take an entire string
+
+
+let numberButtons = document.getElementById('calculator')
+
+numberButtons.addEventListener("click", function(event) {
+    let display = document.getElementById("display-container")
+     let elementText = event.target.innerText
+    let displayValue = display.textContent + elementText
+    display.textContent = displayValue
+    console.log(parseInt(displayValue))
+})
+
+
+
+
+
+// theabove function only takes a single inpout at a time. this needs to take an entire string look at previous projects. will be dom related
