@@ -39,6 +39,9 @@ function operate(a, operator, b) {
 
 
 
+
+
+
 //Listens for display numbers
 
 let buttons = document.getElementById('calculator')    
@@ -67,16 +70,41 @@ buttons.addEventListener("mousedown", function(event) {
 
     })
 
+    buttons.addEventListener("mouseup", function(event) {
+        let display = document.getElementById("display-container")
+        let operatorButtons = document.getElementsByClassName("operator-button")       // bug: num2 is being reassigned in this part, listen for something else
+        for (let i = 0; i < operatorButtons.length; i++) {
+          if (event.target === operatorButtons[i] && "value" in num2 === true) {
+          console.log("YEHHHHHHHHHHHHHH")
+        }else {
+          console.log("lmaooo got em")
+        }
+        }
+      
+      
+      
+      
+      
+      })
+
+
+
+
+
 // listens for num1
 
 buttons.addEventListener("mousedown", function(event) {
     let display = document.getElementById("display-container")   // i have grabbed this value here. need to notremove from array or not listen to it intially
-        if (event.target.innerText == "+" && "value" in num1 != true) {
-                let slicedNumber = display.textContent.slice(0, -1)
-                num1.value = parseInt(slicedNumber)
-                console.log(num1.value)
-        }else {
-          console.log('reee')
+        if ("value" in num1 === true) {
+            console.log('we have num1')
+        }else if (event.target.innerText == "+" && "value" in num1 != true){
+          
+            let slicedNumber = display.textContent.slice(0, -1)
+            num1.value = parseInt(slicedNumber)
+            console.log(num1.value)
+          
+          
+            
         }
         
 }) 
@@ -102,7 +130,7 @@ buttons.addEventListener("mouseup", function(event) {
     let display = document.getElementById("display-container")
     let operatorButtons = document.getElementsByClassName("operator-button")       // START HERE: now thatthe event is registered. clear the display yext and listen for num2 untill another operator or equals sign is pressed
     for (let i = 0; i < operatorButtons.length; i++) {
-        if (event.target === operatorButtons[i] && "value" in num1 === true) {
+        if (event.target === operatorButtons[i] && "value" in num1 === true && "value" in operator === true) {
 
           let slicedNumber = display.textContent.slice(0, -1)
           num2.value = parseInt(slicedNumber)
@@ -123,20 +151,9 @@ buttons.addEventListener("mouseup", function(event) {
 
 
 
-//operate
-buttons.addEventListener("click", function(event) {
-  let display = document.getElementById("display-container")
-  let operatorButtons = document.getElementsByClassName("operator-button")       // bug: num2 is being reassigned in this part, listen for something else
-  for (let i = 0; i < operatorButtons.length; i++) {
-    if (num2.value === true) {
-    console.log("YEHHHHHHHHHHHHHH")
-  }else {
-    console.log("lmaooo got em")
-  }
-  }
+/* Notes: we finally have all listeners in place to gather all the variables. now we just need to make the operate function work
+once operate works we will have to refactor the code accept all the operators
 
-
-
-
-
-})
+refactor display number event listener to oonly be listening for number buttons
+ MAKE LOOK GOOD
+*/
