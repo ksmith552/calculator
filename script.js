@@ -47,8 +47,7 @@ function operate(a, operator, b) {
 let buttons = document.getElementById('calculator')    
 buttons.addEventListener("mousedown", function(event) {
     let display = document.getElementById("display-container")   //you need to just iterate over the buttons
-     let elementText = event.target.innerText
-     
+    let elementText = event.target.innerText
     if (operator.value === "+") {
         console.log("you did it")
         display.textContent = "" + event.target.innerText      /// this works but its double firing the event because its listening to opeator as ell
@@ -58,34 +57,22 @@ buttons.addEventListener("mousedown", function(event) {
         } else {
           let displayValue = display.textContent + elementText
           display.textContent = displayValue
-
         }
-
-
-
-
-
-    
-    //console.log(displayValue)
-
     })
 
+
+    //operate
     buttons.addEventListener("mouseup", function(event) {
         let display = document.getElementById("display-container")
-        let operatorButtons = document.getElementsByClassName("operator-button")       // bug: num2 is being reassigned in this part, listen for something else
+        let operatorButtons = document.getElementsByClassName("operator-button")       
         for (let i = 0; i < operatorButtons.length; i++) {
           if (event.target === operatorButtons[i] && "value" in num2 === true) {
-          console.log("YEHHHHHHHHHHHHHH")
-        }else {
-          console.log("lmaooo got em")
+          console.log(operate(num1.value, operator.value, num1.value))      //NOTE operate is working here as intended for addition, now make it all work
+            }else {
+            console.log("lmaooo got em")
+            }
         }
-        }
-      
-      
-      
-      
-      
-      })
+    })
 
 
 
@@ -94,19 +81,14 @@ buttons.addEventListener("mousedown", function(event) {
 // listens for num1
 
 buttons.addEventListener("mousedown", function(event) {
-    let display = document.getElementById("display-container")   // i have grabbed this value here. need to notremove from array or not listen to it intially
+    let display = document.getElementById("display-container")  
         if ("value" in num1 === true) {
             console.log('we have num1')
         }else if (event.target.innerText == "+" && "value" in num1 != true){
-          
             let slicedNumber = display.textContent.slice(0, -1)
             num1.value = parseInt(slicedNumber)
             console.log(num1.value)
-          
-          
-            
         }
-        
 }) 
 
 // Listens for operator
@@ -116,10 +98,7 @@ buttons.addEventListener("mousedown", function(event){
     let operatorButtons = document.getElementsByClassName("operator-button")
         for (let i = 0; i < operatorButtons.length; i++) {
             operator.value = event.target.value;
-
-            
-            }
-        //console.log(operator)
+        }
     })
 
 
@@ -131,21 +110,13 @@ buttons.addEventListener("mouseup", function(event) {
     let operatorButtons = document.getElementsByClassName("operator-button")       // START HERE: now thatthe event is registered. clear the display yext and listen for num2 untill another operator or equals sign is pressed
     for (let i = 0; i < operatorButtons.length; i++) {
         if (event.target === operatorButtons[i] && "value" in num1 === true && "value" in operator === true) {
-
-          let slicedNumber = display.textContent.slice(0, -1)
-          num2.value = parseInt(slicedNumber)
-
+            let slicedNumber = display.textContent.slice(0, -1)
+            num2.value = parseInt(slicedNumber)
             console.log(num2.value)
             break
         }else if(event.target != operatorButtons[i]) {
             console.log('no')
         }
-        
-        
-          else{
-         
-        
-    }
     }
 })
 
