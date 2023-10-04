@@ -38,6 +38,14 @@ body {
 
 }
 
+.operating-button {
+    width: 125px;
+    height: 125px;
+    margin: 5px;
+    font-size: 24px;
+
+}
+
 .number-button, .utility-button, .operator-button, .decimal-button {
     width: 125px;
     height: 125px;
