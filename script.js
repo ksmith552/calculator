@@ -3,6 +3,7 @@ let num2 = {}
 let operator= {}
 let displayValue2 = {value: ""}
 let equals = document.getElementById('operate-button')
+
 // Create a Function for Addition
 function add(a, b) {
     return a + b
@@ -68,11 +69,14 @@ buttons.addEventListener("mouseup", function(event) {
         num2.value = ""
         operator.value = ""
         displayValue2.value = ""
-       // } else if (event.target === equals && "value" in num2 === true) {
-         //   console.log(operate(num1.value, operator.value, num2.value)) 
-           // solution = operate(num1.value, operator.value, num2.value)
-            //num1.value = solution
-            //display.textContent = num1.value
+        } else if (event.target === equals && "value" in num2 === true) {
+            console.log(operate(num1.value, operator.value, num2.value)) 
+           solution = operate(num1.value, operator.value, num2.value)
+            display.textContent = solution
+            delete num1.value
+            delete num2.value
+            delete operator.value
+            displayValue2.value = "" 
         }else {
             console.log("lmaooo got em")
         }
@@ -98,10 +102,10 @@ buttons.addEventListener("mouseup", function(event) {
     let display = document.getElementById("display-container")  
         if ("value" in num1 === true) {
             console.log('we have num1')
-        }else if (event.target.innerText == "+" && "value" in num1 != true){   //need to refactor this, operatovr value is going missing
+        }else if (event.target.classList.contains("operator-button") && "value" in num1 != true){   //need to refactor this, operatovr value is going missing
             let number1 = display.textContent
             num1.value = parseInt(number1)
-            console.log(num1.value)
+            console.log("yooooo we did uttttt")
         }
 }) 
 
