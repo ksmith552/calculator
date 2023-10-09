@@ -130,6 +130,16 @@ buttons.addEventListener("mousedown", function(event) {
     
 })
 
+let clearButton = document.getElementById("clear-button")
+clearButton.addEventListener("click", function(event) {
+    let display = document.getElementById("display-container")
+    display.textContent = ""
+    delete num1.value
+    delete num2.value
+    delete operator.value
+    displayValue2.value = ""
+})
+
 
 /* Notes: we finally have all listeners in place to gather all the variables. now we just need to make the operate function work
 once operate works we will have to refactor the code accept all the operators
