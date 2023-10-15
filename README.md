@@ -6,16 +6,9 @@ Technologies used: HTML, CSS, JavaScript
 
 to'dos:
 
+1. divide by zero error
 
-1. actual styling
-
-2. configure floats?
-
-3. divide by zero error
-
-4. Clear button
-
-5. format the spaghetti
+2. format the spaghetti
 
 
 
