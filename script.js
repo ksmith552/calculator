@@ -1,8 +1,10 @@
+// Globals :'(
 let num1 = {}
 let num2 = {}
 let operator= {}
 let displayValue2 = {value: ""}
 let equals = document.getElementById('operate-button')
+
 // Create a Function for Addition
 function add(a, b) {
     return a + b
@@ -37,12 +39,10 @@ function operate(a, operator, b) {
     } else { console.log("Error: Please enter a valid operator.")}
 }
 
-
 //Listens for display numbers
-
 let buttons = document.getElementById('calculator')    
 buttons.addEventListener("mousedown", function(event) {
-    let display = document.getElementById("display-container")   //you need to just iterate over the buttons
+    let display = document.getElementById("display-container")   
     let numberButtons = document.getElementsByClassName("number-buttons")
     let elementText = event.target.innerText
    if (event.target.classList.contains("number-button") && "value" in num1 === true && "value" in operator === true) {
@@ -55,11 +55,9 @@ buttons.addEventListener("mousedown", function(event) {
         }
 })
 
-
 //operate
 buttons.addEventListener("mouseup", function(event) {
-    let display = document.getElementById("display-container")
-       //let operatorButtons = document.getElementsByClassName("operator-button")  
+    let display = document.getElementById("display-container")  
     if (event.target.classList.contains("operator-button") && "value" in num2 === true) {
         console.log(operate(num1.value, operator.value, num2.value)) 
         solution = operate(num1.value, operator.value, num2.value)
@@ -68,24 +66,32 @@ buttons.addEventListener("mouseup", function(event) {
         num2.value = ""
         operator.value = ""
         displayValue2.value = ""
-       // } else if (event.target === equals && "value" in num2 === true) {
-         //   console.log(operate(num1.value, operator.value, num2.value)) 
-           // solution = operate(num1.value, operator.value, num2.value)
-            //num1.value = solution
-            //display.textContent = num1.value
-        }else {
-            console.log("lmaooo got em")
+    } else if (event.target === equals && "value" in num2 === true) {
+        console.log(operate(num1.value, operator.value, num2.value)) 
+        solution = operate(num1.value, operator.value, num2.value)
+        display.textContent = solution
+        delete num1.value
+        delete num2.value
+        delete operator.value
+        displayValue2.value = "" 
+    }else {
+        console.log("lmaooo got em")
         }
 })
+//Decimal button control
+let decimalButton = document.getElementById("decimal-button")
+decimalButton.addEventListener("click", function(event) {
+    decimalButton.disabled = true
 
+})
 
-
-// Listens for operator
+// Get operator
 buttons.addEventListener("mouseup", function(event){
     let display = document.getElementById("display-container")
     let operatorButtons = document.getElementsByClassName("operator-button")
     if (event.target.classList.contains("operator-button"))  {
         operator.value = event.target.value
+        decimalButton.disabled = false
         console.log("we have  op")
     }else{
         console.log("no operator here")
@@ -93,45 +99,45 @@ buttons.addEventListener("mouseup", function(event){
 })
 
 
-// listens for num1
+// Get num1
 buttons.addEventListener("mouseup", function(event) {
     let display = document.getElementById("display-container")  
         if ("value" in num1 === true) {
             console.log('we have num1')
-        }else if (event.target.innerText == "+" && "value" in num1 != true){   //need to refactor this, operatovr value is going missing
+        }else if (event.target.classList.contains("operator-button") && "value" in num1 != true){   
             let number1 = display.textContent
-            num1.value = parseInt(number1)
-            console.log(num1.value)
+            num1.value = parseFloat(number1)
+            console.log("yooooo we did uttttt")
         }
 }) 
 
 
-//num 2 
+// Get num2 
 buttons.addEventListener("mousedown", function(event) {
     let display = document.getElementById("display-container")
-    let operatorButtons = document.getElementsByClassName("operator-button")       // START HERE: now thatthe event is registered. clear the display yext and listen for num2 untill another operator or equals sign is pressed
-    
+    let operatorButtons = document.getElementsByClassName("operator-button")
         if (event.target.classList.contains("operator-button") && "value" in num1 === true && "value" in operator === true) {
             let number2 = display.textContent
-            num2.value = parseInt(number2)
+            num2.value = parseFloat(number2)
             console.log("we got em boiii")
-            
         }else if (event.target === equals && "value" in num1 === true && "value" in operator === true) {
             let number2 = display.textContent
-            num2.value = parseInt(number2)
+            num2.value = parseFloat(number2)
             console.log("we got em boiii")
         }else {
             console.log('nopppppppppp')
         }
-    
 })
 
-
-/* Notes: we finally have all listeners in place to gather all the variables. now we just need to make the operate function work
-once operate works we will have to refactor the code accept all the operators
-
-refactor display number event listener to oonly be listening for number buttons
- MAKE LOOK GOOD
-*/
-
+// Clear values
+let clearButton = document.getElementById("clear-button")
+clearButton.addEventListener("click", function(event) {
+    let display = document.getElementById("display-container")
+    display.textContent = ""
+    delete num1.value
+    delete num2.value
+    delete operator.value
+    displayValue2.value = ""
+    decimalButton.disabled = false
+})
 

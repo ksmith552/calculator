@@ -2,7 +2,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;    
+    background-color: #37444d;
 }
 
 #calculator {
@@ -12,6 +13,7 @@ body {
     border-radius: 2.5%;
     height: 900px;
     width: 600px;
+    background-color: #0d0d0c;
    
 }
 
@@ -24,9 +26,11 @@ body {
     margin-right: 34px;
     margin-bottom: 35px;
     height: 150px;
-    font-size: 50px;
+    font-size: 55px;
+    font-weight: 500;
+    border-radius: 2.5%;
+    background-color: gray;
     
-    border-style: double;
     
 }
 
@@ -38,23 +42,56 @@ body {
 
 }
 
+#zero-button {
+    width: 260px;
+    margin: 5px;
+    font-size: 30px;
+}
+
+#clear-button {
+    color: red;
+    font-size: 40px;
+    font-weight: bold;
+}
+
 .operating-button {
     width: 125px;
     height: 125px;
     margin: 5px;
-    font-size: 24px;
+    font-size: 50px;
+    background-color: #57f542;
+    border-color: #57f542;
+    border-radius: 5%;
+    color: white;
 
 }
 
-.number-button, .utility-button, .operator-button, .decimal-button {
+.operator-button {
     width: 125px;
     height: 125px;
     margin: 5px;
-    font-size: 24px;
+    font-size: 50px;
+    font-weight: bold;
+    border-radius: 5%;
+    color: #57f542;
+    background-color: gray;
+    border-color: gray;
+
+
 }
 
-.zero-button {
-    width: 260px;
+
+.number-button, .utility-button, .decimal-button {
+    width: 125px;
+    height: 125px;
     margin: 5px;
-    font-size: 24px;
+    font-size: 32px;
+    font-weight: bold;
+    border-radius: 5%;
+    background-color: gray;
+    border-color: gray;
+    color: white;
+    
 }
+
+
